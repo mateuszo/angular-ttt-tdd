@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { GameFieldComponent } from './game-field.component';
 
@@ -8,9 +9,8 @@ describe('GameFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameFieldComponent ]
-    })
-    .compileComponents();
+      declarations: [GameFieldComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,12 @@ describe('GameFieldComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('When I click a field a toggleField function is called', () => {
+    let field = fixture.debugElement.query(By.css('button'));
+    let toggleSpy = spyOn(component, 'toggleField');
+
+    field.triggerEventHandler('click', null);
+
+    expect(toggleSpy).toHaveBeenCalledTimes(1);
   });
 });
