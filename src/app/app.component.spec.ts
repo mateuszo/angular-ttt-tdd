@@ -1,12 +1,14 @@
 import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {By} from "@angular/platform-browser";
+import { GameFieldComponent } from './components/game-field/game-field.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        GameFieldComponent
       ],
     }).compileComponents();
   });
@@ -24,6 +26,9 @@ describe('AppComponent', () => {
       const app = fixture.componentInstance;
       const fields = fixture.debugElement.queryAll(By.css('app-game-field'));
       expect(fields.length).toEqual(9);
+      fields.forEach((field) => {
+        expect(field.nativeElement.innerHTML).toEqual('');
+      });
     });
 
   });
