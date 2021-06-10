@@ -1,5 +1,6 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {By} from "@angular/platform-browser";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -16,16 +17,14 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ttt-tdd'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ttt-tdd');
-  });
+  describe('As player', () => {
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ttt-tdd app is running!');
+    it(`I want to see 9 empty fields`, () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      const fields = fixture.debugElement.queryAll(By.css('app-game-field'));
+      expect(fields.length).toEqual(9);
+    });
+
   });
 });
