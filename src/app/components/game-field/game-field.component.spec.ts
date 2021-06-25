@@ -28,12 +28,23 @@ describe('GameFieldComponent', () => {
     expect(toggleSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('WHen I click a field an "x" sign is displayed in the field', () => {
+  it('When First Player click a field an "x" sign is displayed in the field', () => {
     let field = fixture.debugElement.query(By.css('button'));
 
+    component.firstPlayer = true;
     field.triggerEventHandler('click', null);
     fixture.detectChanges();
 
     expect(field.nativeElement.innerText).toEqual('x');
+  });
+
+  it(`When Second Player click a field an "o" sign is displayed in the field`, () => {
+    let field = fixture.debugElement.query(By.css('button'));
+
+    component.firstPlayer = false;
+    field.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(field.nativeElement.innerText).toEqual('o');
   });
 });

@@ -1,11 +1,11 @@
-<div class="app-game-turn">player x turn</div>
+<div class="app-game-turn">player {{ firstPlayer ? 'x' : 'o' }} turn</div>
 
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
-<app-game-field></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>
+<app-game-field (click)="togglePlayer()" [firstPlayer]="firstPlayer"></app-game-field>

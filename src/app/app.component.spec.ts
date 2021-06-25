@@ -31,9 +31,18 @@ describe('AppComponent', () => {
 
     it('I want to see player turns', () => {
       const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.componentInstance;
-      const field = fixture.debugElement.query(By.css('.app-game-turn'));
-      expect(field.nativeElement.innerHTML).toEqual('player x turn');
+      fixture.detectChanges();
+      const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
+      expect(turnField.nativeElement.innerHTML).toEqual('player x turn');
+    });
+
+    it('After click at "app-game-field" I want to see player "o" turn', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
+      const fields = fixture.debugElement.queryAll(By.css('app-game-field button'));
+      fields[0].triggerEventHandler('click', null);
+      fixture.detectChanges();
+      expect(turnField.nativeElement.innerHTML).toEqual('player o turn');
     });
   });
 });
