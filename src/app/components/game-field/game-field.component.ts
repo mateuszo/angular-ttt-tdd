@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameFieldComponent implements OnInit {
 
+  value ='';
+
   constructor() {}
 
   ngOnInit(): void {}
 
   toggleField() {
-  
+    this.value = 'x';
   }
 }
