@@ -28,5 +28,12 @@ describe('AppComponent', () => {
         expect(field.nativeElement.innerHTML).toEqual('');
       });
     });
+
+    it('I want to see player turns', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      const field = fixture.debugElement.query(By.css('.app-game-turn'));
+      expect(field.nativeElement.innerHTML).toEqual('player x turn');
+    });
   });
 });

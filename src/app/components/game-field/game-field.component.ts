@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-field.component.scss'],
 })
 export class GameFieldComponent implements OnInit {
-
-  value ='';
+  value = '';
 
   constructor() {}
 

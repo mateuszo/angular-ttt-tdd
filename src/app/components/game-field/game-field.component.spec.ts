@@ -29,13 +29,11 @@ describe('GameFieldComponent', () => {
   });
 
   it('WHen I click a field an "x" sign is displayed in the field', () => {
-
     let field = fixture.debugElement.query(By.css('button'));
 
     field.triggerEventHandler('click', null);
     fixture.detectChanges();
 
     expect(field.nativeElement.innerText).toEqual('x');
-
-  })
+  });
 });
