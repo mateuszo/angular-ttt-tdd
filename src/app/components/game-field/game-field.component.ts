@@ -6,13 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-field.component.scss'],
 })
 export class GameFieldComponent implements OnInit {
-  field: string;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   toggleField() {
-    this.field = 'x';
+  
   }
 }
