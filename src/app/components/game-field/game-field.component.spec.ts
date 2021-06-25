@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import { GameFieldComponent } from './game-field.component';
+import {GameFieldComponent} from './game-field.component';
 
 describe('GameFieldComponent', () => {
   let component: GameFieldComponent;
@@ -46,5 +46,31 @@ describe('GameFieldComponent', () => {
     fixture.detectChanges();
 
     expect(field.nativeElement.innerText).toEqual('o');
+  });
+
+  it('If First player clicked again on the same button, dont change the value', () => {
+    let field = fixture.debugElement.query(By.css('button'));
+
+    component.firstPlayer = true;
+    component.value = 'o';
+
+    field.triggerEventHandler('click', null);
+    component.firstPlayer = false;
+    fixture.detectChanges();
+
+    expect(field.nativeElement.innerText).toEqual('o');
+  });
+
+  it('If Second player clicked again on the same button, dont change the value', () => {
+    let field = fixture.debugElement.query(By.css('button'));
+
+    component.firstPlayer = false;
+    component.value = 'x';
+
+    field.triggerEventHandler('click', null);
+    component.firstPlayer = true;
+    fixture.detectChanges();
+
+    expect(field.nativeElement.innerText).toEqual('x');
   });
 });
