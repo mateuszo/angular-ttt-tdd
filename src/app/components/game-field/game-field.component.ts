@@ -1,22 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-game-field',
   templateUrl: './game-field.component.html',
   styleUrls: ['./game-field.component.scss'],
 })
-export class GameFieldComponent implements OnInit {
-  @Output() click = new EventEmitter<void>();
-  @Input() firstPlayer: boolean;
+export class GameFieldComponent {
+
+  @Input()
+  firstPlayer: boolean;
+
+  @Output()
+  onClick = new EventEmitter<void>();
 
   value = '';
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
   toggleField(): void {
-    this.value = this.firstPlayer ? 'x' : 'o';
-    this.click.emit();
+    if (!this.value) {
+      this.value = this.firstPlayer ? 'x' : 'o';
+      this.onClick.emit();
+    }
   }
 }
