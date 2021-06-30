@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 
-body * {
-  font-family: "Gochi Hand", cursive;
+body {
+  background: url(assets/hip-square.png);
+  * {
+    font-family: "Gochi Hand", cursive;
+  }
 }
 
 .board {
@@ -11,10 +14,16 @@ body * {
   gap: 5px;
   max-width: 960px;
   margin: auto;
+  background: url(assets/ttt-board2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   button {
-    font-size: 16em;
+    font-size: 15em;
     aspect-ratio: 1 /1;
     width: 100%;
     text-transform: capitalize;
+    background: transparent;
+    border: none;
   }
 }
