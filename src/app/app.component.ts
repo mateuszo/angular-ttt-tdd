@@ -8,9 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   firstPlayer = true;
 
+  title = 'ttt-tdd';
+
   togglePlayer(): void {
     this.firstPlayer = !this.firstPlayer;
+    this.setGameEndClassList();
   }
 
-  title = 'ttt-tdd';
+  setGameEndClassList(): void {
+    document.querySelector('.app-game-turn').classList.add('game-ended');
+  }
 }

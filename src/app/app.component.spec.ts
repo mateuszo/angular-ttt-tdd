@@ -65,5 +65,12 @@ describe('AppComponent', () => {
         turnField.nativeElement.classList.contains('game-ended')
       ).toBeTrue();
     });
+    it('should check if there is no class `game-ended`', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
+      expect(
+        turnField.nativeElement.classList.contains('game-ended')
+      ).toBeFalse();
+    });
   });
 });
