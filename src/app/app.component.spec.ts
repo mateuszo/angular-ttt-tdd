@@ -66,17 +66,6 @@ describe('AppComponent', () => {
       fields[2].triggerEventHandler('click', null);
       fixture.detectChanges();
 
-      const winningMoves = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-      ];
-
       expect(
         turnField.nativeElement.classList.contains('game-ended')
       ).toBeTrue();
@@ -111,8 +100,6 @@ describe('AppComponent', () => {
             expect(turnField.nativeElement.classList.contains('game-ended')).toBeFalse();
           }
         });
-
-        // fixture.detectChanges();
 
         expect(turnField.nativeElement.classList.contains('game-ended')).toBeTrue();
       });
