@@ -39,10 +39,31 @@ describe('AppComponent', () => {
     it('After click at "app-game-field" I want to see player "o" turn', () => {
       const fixture = TestBed.createComponent(AppComponent);
       const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
-      const fields = fixture.debugElement.queryAll(By.css('app-game-field button'));
+      const fields = fixture.debugElement.queryAll(
+        By.css('app-game-field button')
+      );
       fields[0].triggerEventHandler('click', null);
       fixture.detectChanges();
       expect(turnField.nativeElement.innerHTML).toEqual('player o turn');
+    });
+
+    it('After fulfilling win condition I want to see that the game is over', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const fields = fixture.debugElement.queryAll(
+        By.css('app-game-field button')
+      );
+      const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
+
+      fields[0].triggerEventHandler('click', null);
+      fields[3].triggerEventHandler('click', null);
+      fields[1].triggerEventHandler('click', null);
+      fields[4].triggerEventHandler('click', null);
+      fields[2].triggerEventHandler('click', null);
+      fixture.detectChanges();
+
+      expect(
+        turnField.nativeElement.classList.contains('game-ended')
+      ).toBeTrue();
     });
   });
 });
