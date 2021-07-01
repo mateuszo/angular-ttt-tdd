@@ -1,40 +1,8 @@
 <div class="app-game-turn">player {{ firstPlayer ? "x" : "o" }} turn</div>
 
 <div class="board">
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
-  ></app-game-field>
-  <app-game-field
-    (onClick)="togglePlayer()"
-    [firstPlayer]="firstPlayer"
+  <app-game-field *ngFor="let field of fields; let i = index"
+                  [firstPlayer]="firstPlayer"
+                  (onClick)="togglePlayer(i)"
   ></app-game-field>
 </div>
