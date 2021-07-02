@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { allMoves } from './all-moves';
 import { AppComponent } from './app.component';
 import { GameFieldComponent } from './components/game-field/game-field.component';
+import { GameLogicService } from './game-logic.service';
 import { winningGameMoves } from './winning-conditions';
 
 describe('AppComponent', () => {
@@ -147,6 +148,50 @@ describe('AppComponent', () => {
           expect(fixture.componentInstance.fields[i]).toEqual('o');
         });
       }
+    });
+  });
+
+  describe('Winning conditions', () => {
+    let fixture: ComponentFixture<AppComponent>;
+    let fields: DebugElement[];
+
+    let gameLogicSpy;
+
+    const clickField = (id) => {
+      fields[id].triggerEventHandler('click', null);
+      fixture.detectChanges();
+    };
+
+    beforeEach(() => {
+      gameLogicSpy = jasmine.createSpyObj('GameLogicService', ['getWinner']);
+      TestBed.overrideProvider(GameLogicService, { useValue: gameLogicSpy });
+      fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+      fields = fixture.debugElement.queryAll(By.css('app-game-field button'));
+    });
+    it('should be calculated by GameLogicService when a button is clicked', () => {
+      clickField(0);
+      expect(gameLogicSpy.getWinner).toHaveBeenCalledTimes(1);
+    });
+    it('game-ended class should be added when GameLogic service says x is the winner', () => {
+      gameLogicSpy.getWinner.and.returnValue('x');
+
+      clickField(0);
+
+      const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
+      expect(
+        turnField.nativeElement.classList.contains('game-ended')
+      ).toBeTrue();
+    });
+    it('game-ended class should be added when GameLogic service says o is the winner', () => {
+      gameLogicSpy.getWinner.and.returnValue('o');
+
+      clickField(0);
+
+      const turnField = fixture.debugElement.query(By.css('.app-game-turn'));
+      expect(
+        turnField.nativeElement.classList.contains('game-ended')
+      ).toBeTrue();
     });
   });
 });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { winningGameMoves } from './winning-conditions';
+import { GameLogicService } from './game-logic.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,8 @@ export class AppComponent {
     secondPlayer: [],
   };
 
+  constructor(private gameLogic: GameLogicService) {}
+
   togglePlayer(fieldIndex: number): void {
     if (this.firstPlayer) {
       this.moves.firstPlayer.push(fieldIndex);
@@ -36,20 +38,9 @@ export class AppComponent {
   }
 
   private checkWiningConditions(): void {
-    this.moves.firstPlayer.sort((a, b) => a - b);
-    this.moves.secondPlayer.sort((a, b) => a - b);
-
-    winningGameMoves.forEach((winningMoves: Array<number>) => {
-      if (
-        JSON.stringify(winningMoves) === JSON.stringify(this.moves.firstPlayer)
-      ) {
-        this.setGameEndClassList();
-      }
-      if (
-        JSON.stringify(winningMoves) === JSON.stringify(this.moves.secondPlayer)
-      ) {
-        this.setGameEndClassList();
-      }
-    });
+    const winner = this.gameLogic.getWinner(this.fields);
+    if (['x', 'o'].includes(winner)) {
+      this.setGameEndClassList();
+    }
   }
 }
