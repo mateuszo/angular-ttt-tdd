@@ -1,8 +1,9 @@
 <div class="app-game-turn">player {{ firstPlayer ? "x" : "o" }} turn</div>
 
 <div class="board">
-  <app-game-field *ngFor="let field of fields; let i = index"
-                  [firstPlayer]="firstPlayer"
-                  (onClick)="togglePlayer(i)"
+  <app-game-field
+    *ngFor="let field of range; let i = index"
+    [firstPlayer]="firstPlayer"
+    (onClick)="togglePlayer(i)"
   ></app-game-field>
 </div>
